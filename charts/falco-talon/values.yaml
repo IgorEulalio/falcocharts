@@ -141,11 +141,6 @@ config:
   # -- auto reload the rules when the files change
   watchRules: true
 
-  # -- list of locale rules to load, they will be concatenated into a single config map
-  rulesFiles:
-    - rules.yaml
-    - rules_override.yaml
-
   # -- deduplication of the Falco events
   deduplication:
     # -- enable the leader election for cluster mode
@@ -155,6 +150,15 @@ config:
 
   # -- print in stdout all received events, not only those which match a rule
   printAllEvents: false
+
+  # User-defined additional rules for rules_override.yaml
+  rulesOverride: |
+    - action: Terminate Pod
+      actionner: kubernetes:terminate
+      parameters:
+        ignore_daemonsets: true
+        ignore_statefulsets: true
+        grace_period_seconds: 20
 
   # -- open telemetry parameters
   otel:
