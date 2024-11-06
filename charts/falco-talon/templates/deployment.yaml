@@ -20,6 +20,8 @@ spec:
         {{- if .Values.podAnnotations }}
           {{ toYaml .Values.podAnnotations | indent 8 }}
         {{- end }}
+      annotations:
+        secret-checksum: {{ (lookup "v1" "Secret" .Release.Namespace (include "falco-talon.name" . | cat "-config")).data | toJson | sha256sum }}
     spec:
       serviceAccountName: {{ include "falco-talon.name" . }}
       {{- if .Values.priorityClassName }}
