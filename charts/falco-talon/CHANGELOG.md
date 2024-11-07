@@ -3,6 +3,11 @@
 This file documents all notable changes to Falco Talon Helm Chart. The release
 numbering uses [semantic versioning](http://semver.org).
 
+## 0.1.3 - 2024-11-07
+- configure pod to not rollout on configmap change
+- configure pod to rollout on secret change
+- add config.rulesOverride allowing users to override config rules
+
 ## 0.1.2 - 2024-10-14
 
 - remove all refs to the previous org
